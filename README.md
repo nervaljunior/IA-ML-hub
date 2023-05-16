@@ -11,3 +11,8 @@ no jogo as peças tem um lado preto e um lado é branco
 caso a peça de cor diferente encurrale a peça de cor diferente as peças dos meio mudam de cor. 
 
 elas podem ser encurraladas na diagonal, vertical e horizontal 
+
+#  dicas:
+seja o ultimo a entregar a lateral e os cantos e seus adjacentes
+fazer com que o adiversario se afaste primeiro do meio
+preste atenção nas bordas
