@@ -162,19 +162,24 @@ def getPlayerMove(board, playerTile):
 		move = input().lower()
 		if move == 'quit':
 			return 'quit'
+
 		if move == 'hints':
 			return 'hints'
+
 		if len(move) == 2 and move[0] in DIGITS1TO8 and move[1] in DIGITS1TO8:
 			x = int(move[0]) - 1
 			y = int(move[1]) - 1
+
 			if isValidMove(board, playerTile, x, y) == False:
-			  	print('Essa não é uma jogada válida')
+				print("Essa não é uma jogada válida.")
 				continue
 			else:
-			  break
+				break
+
 		else:
 			print('Essa não é uma jogada válida, digite o valor de x (1-8), depois o valor de y (1-8).')
 			print('Por exemplo, 81 será o canto superior direito.')
+	
 	return [x, y]
 
 def getComputerMove(board, computerTile):
@@ -185,12 +190,16 @@ def getComputerMove(board, computerTile):
 	# Escolhe a jogada que resulta em mais pontos
 	bestScore = -1
 	for x, y in possibleMoves:
+		print("x e y:", x , y)
 		dupeBoard = getBoardCopy(board)
 		makeMove(dupeBoard, computerTile, x, y)
 		score = getScoreOfBoard(dupeBoard)[computerTile]
 		if score > bestScore:
 			bestMove = [x, y]
 			bestScore = score
+	
+	# Debuging
+	input('Pressione Enter para continuar.')
 	return bestMove
 
 def showPoints(playerTile, computerTile):
