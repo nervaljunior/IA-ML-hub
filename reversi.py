@@ -190,7 +190,7 @@ def getComputerMove(board, computerTile):
 	# randomiza a ordem dos possíveis movimentos
 	random.shuffle(possibleMoves)
 	# Escolhe a jogada que resulta em mais pontos
-	bestScore = -1
+	bestScore = minmax()
 	for x, y in possibleMoves:
 		print("x e y:", x , y)
 		dupeBoard = getBoardCopy(board)
@@ -203,6 +203,10 @@ def getComputerMove(board, computerTile):
 	# Debuging
 	input('Pressione Enter para continuar.')
 	return bestMove
+
+def minmax():
+	print("implementar")
+	return -1
 
 def showPoints(playerTile, computerTile):
 	# Mostra o score atual
