@@ -2,6 +2,8 @@
 import random
 import sys
 
+BOARD_SIZE = 8
+
 def drawBoard(board):
 	# Essa funcao desenha o tabuleiro
 	HLINE = '  +---+---+---+---+---+---+---+---+'
