@@ -206,51 +206,31 @@ def getComputerMove(board, computerTile):
     # randomiza a ordem dos possíveis movimentos
     random.shuffle(possibleMoves)
     # Escolhe a jogada que resulta em mais pontos
-    return getBestMove(board, possibleMoves, computerTile)
+    return getBestMove(board, computerTile)
 
 
-def getBestMove(board, possibleMoves, computerTile):
+def getBestMove(board, computerTile):
 
-    scoreDic = {}
-    scoreHeuDic = {}
-    bestHeuScore = -100
-    bestScore = 100
+    moveValue = {}
 
     # Analisando a quantidade de novas peças
     # das possiveis jogadas
-    for x, y in possibleMoves:
-        dupeBoard = getBoardCopy(board)
-        makeMove(dupeBoard, computerTile, x, y)
-        score = getScoreOfBoard(dupeBoard)[computerTile]
-        scoreDic[str(x) + ',' + str(y)] = score
-        scoreHeuDic[str(x) + ',' + str(y)] = gameHeuristc(x, y)
+    moveValue = minimax(board,
+                        3, True, computerTile, False)
+    print()
 
     # Debuging
-    # print("best score:", scoreDic)
-    # print("best score heu:", scoreHeuDic)
 
-    # Seleciona o maior valor de heuristica
-    for key in scoreHeuDic.keys():
-        if scoreHeuDic[key] > bestHeuScore:
-            bestHeuScore = scoreHeuDic[key]
-            x, y = getXeY(key)
+    best = float('-inf')
+    for key in moveValue.keys():
+        x, y = getXeY(key)
+        if moveValue[key] > best and gameHeuristc(x, y) > 0:
+            best = moveValue[key]
+            bestMove = [x, y]
+        elif gameHeuristc(x, y) > best:
+            best = moveValue[key]
             bestMove = [x, y]
 
-    # Filtra movimentos possiveis
-    # keys = []
-    # for key in scoreHeuDic.keys():
-    #     if scoreHeuDic[key] != bestHeuScore:
-    #         keys.append(key)
-
-    # for key in keys:
-    #     scoreHeuDic.pop(key)
-    #     scoreDic.pop(key)
-
-    # Debuging
-    # print("new best score:", scoreDic)
-    # print("new best score heu:", scoreHeuDic)
-    # print("move:", bestMove)
-    # input('Pressione Enter para continuar.')
     return bestMove
 
 
@@ -274,33 +254,37 @@ def getXeY(string):
     return int(x), int(y)
 
 
-def minimax(board, depth, maximizingPlayer, tile, alpha, beta):
-    if depth == 0 or isTerminalNode(board):
-        return evaluate(board, computerTile)
+def minimax(board, depth, isMax, tile, position):
+    if (depth == 0 or isTerminalNode(board)):
+        return gameHeuristc(position[0], position[1])
 
-    if maximizingPlayer:
+    if isMax:
         maxEval = float('-inf')
+        moveValue = {}
         for x, y in getValidMoves(board, tile):
             dupeBoard = getBoardCopy(board)
             makeMove(dupeBoard, tile, x, y)
-            eval = minimax(dupeBoard, depth - 1, False,
-                           getOpponentTile(tile), alpha, beta)
-            maxEval = max(maxEval, eval)
-            alpha = max(alpha, eval)
-            if beta <= alpha:
-                break
+            value = minimax(dupeBoard, depth - 1,
+                            False, getOpponentTile(tile), [x, y])
+            if value > maxEval:
+                maxEval = value
+
+            moveValue[str(x) + ',' + str(y)] = value
+
+        if position == False:
+            return moveValue
+
         return maxEval
     else:
         minEval = float('inf')
         for x, y in getValidMoves(board, tile):
             dupeBoard = getBoardCopy(board)
             makeMove(dupeBoard, tile, x, y)
-            eval = minimax(dupeBoard, depth - 1, True,
-                           getOpponentTile(tile), alpha, beta)
-            minEval = min(minEval, eval)
-            beta = min(beta, eval)
-            if beta <= alpha:
-                break
+            value = minimax(dupeBoard, depth - 1,
+                            True, getOpponentTile(tile), [x, y])
+            if value < minEval:
+                minEval = value
+
         return minEval
 
 
@@ -317,7 +301,10 @@ def evaluate(board, computerTile):
 
 def getOpponentTile(tile):
     # Retorna a peça do oponente dado uma peça atual
-    return 'O' if tile == 'X' else 'X'
+    if tile == 'X':
+        return 'O'
+    else:
+        return 'X'
 
 
 def showPoints(playerTile, computerTile):
