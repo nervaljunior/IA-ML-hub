@@ -4,7 +4,7 @@
 
 **Criadores**: [Felipe Teles](https://github.com/felipersteles), [Nerval Junior](https://github.com/nervaljunior) ,[Rodrigo pontes](https://github.com/rodrigopontis) e [João leonardo](https://github.com/joaoleopo)
 
-![](https://img.shields.io/badge/Language-Python-blue)![](https://img.shields.io/badge/IDE-Microsoft%20Visual%20Studio%202022-blue) ![](https://img.shields.io/badge/Environment-Windows-red) ![](https://img.shields.io/badge/User%20Interface-GUI%20%2B%20CLI-yellowgreen)
+![](https://img.shields.io/badge/Language-Python-blue) ![](https://img.shields.io/badge/IDE-Microsoft%20Visual%20Studio%202022-blue) ![](https://img.shields.io/badge/Environment-Windows-red) ![](https://img.shields.io/badge/User%20Interface-GUI%20%2B%20CLI-yellowgreen)
 
 ---
 
