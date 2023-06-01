@@ -38,3 +38,6 @@ fazer com que o adiversario se afaste primeiro do meio
 preste atenção nas bordas
 
 ![image](https://github.com/nervaljunior/ReverseGame-IA/assets/108685222/ee80b913-5e92-4796-ac78-c9933f3781c5)
+
+
+## "os jogos estao para a IA assim como as corridas estao para os projetos de automoveis"( S.Russel )
