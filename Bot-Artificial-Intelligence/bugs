@@ -1,0 +1,19 @@
+## reativo simples
+-falta dar percepções para o reativo simples
+
+## baseado em modelos 
+faz uma copia dele mesmo no lugar qe pega o lixo
+depois de pegar dois lixos ele buga e nao se move mais pois nao consegue entrar na lixeira 
+ele ta pegando ate a lixeira quando anda 
+
+## baseado em objetivos 
+depois de pegar o que ta na fileira ele executa e começa pular linhas que ainta tem lixo 
+
+## baseado em utilidade 
+OK
+
+
+## função levar lixo 
+ta levando na diagonal e se tiver varios lixos travando a passagem ele nao se movimenta para cima para dar a volta 
+
+
